@@ -1,0 +1,557 @@
+<!--
+ * @Author: Qiguang Chen
+ * @LastEditors: Qiguang Chen
+ * @Date: 2024-03-17 11:48:29
+ * @LastEditTime: 2024-05-26 18:03:01
+ * @Description: 
+ * 
+-->
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://llava-vl.github.io/ -->
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete" lang="en-US">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="description" content="Vision-Language Feedback">
+    <meta name="keywords" content="multimodal chatbot">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/logo.svg" type="image/icon type">
+    <title>AuxOL</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css"
+          integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/explore.css">
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="css/bulma-slider.min.css">
+    <link rel="stylesheet" href="css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/underscore@latest/underscore-umd-min.js"></script>
+    <script src="javascript/problems.js"></script>
+    <script src="javascript/explore.js" defer></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="javascript/fontawesome.all.min.js"></script>
+    <script src="javascript/bulma-carousel.js"></script>
+    <script src="javascript/bulma-slider.js"></script>
+    <script src="javascript/index.js"></script>
+
+
+</head>
+
+
+<body data-new-gr-c-s-check-loaded="14.1126.0" data-gr-ext-installed="">
+<div class="content-block">
+    <div class="content-logo"><div class="content-logo-margin"><img src="./img/logo.svg"></div></div>
+    <div class="content-item"><img src=""><span>Abstract</span></div>
+    <div class="content-item"><img src=""><span>Motivation</span></div>
+    <div class="content-item"><img src=""><span>Method</span></div>
+    <div class="content-item"><img src=""><span>Evaluation</span></div>
+    <div class="content-item"><img src=""><span>Visual Results</span></div>
+    <div class="content-item"><img src=""><span>Others</span></div>
+
+</div>
+
+<div id="nav">
+    <div id="icon">
+        <img src="img/logo.svg" alt="SVG Image" width="28" height="28">
+        <a class="nav-button" href="#home"
+           style="margin-left: 2px; font-size: 24px">AuxOL
+        </a>
+    </div>
+    <div>
+        <a class="nav-button" href="#home">Home</a>
+        <a class="nav-button" href="https://arxiv.org/abs/2406.00956">Paper</a>
+        <a class="nav-button" href="https://github.com/qianxihaoyue/AuxOL">Code</a>
+        <a class="nav-button" href="#evaluation">Experiments</a>
+        <a class="nav-button" href="#citation">Citation</a>
+    </div>
+</div>
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+
+                    <h1 class="title is-1 publication-title" id="home">
+                        <span style="display: inline-block; vertical-align: middle;margin-top: 40px;"><img
+                                src="img/logo.svg" alt="SVG Image">AuxOL</span>
+                    </h1>
+                    <h3 class="title is-3 publication-title">On-the-Fly Improving Segment Anything <br/>
+                        for Medical Image Segmentation using Auxiliary Online Learning
+                    </h3>
+                    <div class="is-size-5">
+              <span class="author-block">
+                <a href="https://lightchen233.github.io" style="color:#008AD7;font-weight:normal;">Tianyu Huang</a><sup>1</sup>,
+              </span>
+                        <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=8lVpK1QAAAAJ&hl=en"
+                   style="color:#008AD7;font-weight:normal;">Tao Zhou</a><sup>1</sup>,
+              </span>
+                        <span class="author-block">
+                <a style="color:#008AD7;font-weight:normal;">Weidi Xie</a><sup>4</sup>,
+              </span>
+                        <span class="author-block">
+                <a href="https://donmaclean7.github.io/"
+                   style="color:#008AD7;font-weight:normal;">Shuo Wang</a><sup>2</sup>,
+              </span>
+                        <span class="author-block">
+                <a href="https://looperxx.github.io/" style="color:#008AD7;font-weight:normal;">Qi Dou</a><sup>3</sup>,
+              </span>
+                        <span class="author-block">
+                <a href="http://ir.hit.edu.cn/~car/"
+                   style="color:#008AD7;font-weight:normal;">Yizhe Zhang</a><sup>1</sup>
+              </span>
+                        </span>
+                    </div>
+
+                    <br>
+                    <div class="is-size-5 publication-authors"
+                         style="display: flex;justify-items: center;flex-direction: column">
+                        <div style="display: flex;flex-direction: row;justify-content: center"><img src="./img/大学.svg"
+                                                                                                    ,
+                                                                                                    style="width: 24px;height: 24px">
+                            <div><sup>1</sup>Nanjing University of Science and Technology</div>
+                        </div>
+                        <br>
+                        <div style="display: flex;flex-direction: row;justify-content: center"><img
+                                src="./img/大学%20(1).svg" , style="width: 24px;height: 24px">
+                            <div><sup>2</sup>Fudan University</div>
+                        </div>
+                        <br>
+                        <div style="display: flex;flex-direction: row;justify-content: center"><img
+                                src="./img/大学%20(2).svg" , style="width: 24px;height: 24px">
+                            <div><sup>3</sup>Chinese University of Hong Kong</div>
+                        </div>
+                        <br>
+                        <div style="display: flex;flex-direction: row;justify-content: center"><img
+                                src="./img/大学%20(3).svg" , style="width: 24px;height: 24px">
+                            <div><sup>4</sup>Shanghai Jiaotong University</div>
+                        </div>
+                        <br>
+                        <!--              <span class="author-block"><b style="color:#008AD7; font-weight:normal">▶ </b><sup>1</sup>Nanjing University of Science and Technology</span>-->
+                        <!--              <br>-->
+                        <!--              <span class="author-block"><b style="color:#94070A; font-weight:normal">▶ </b><sup>2</sup>Fudan University</span>-->
+                        <!--              <br>-->
+                        <!--              <span class="author-block"><b style="color:#07944b; font-weight:normal">▶ </b><sup>3</sup>Chinese University of Hong Kong</span>-->
+                        <!--              <br>-->
+                        <!--              <span class="author-block"><b style="color:#03444b; font-weight:normal">▶ </b> <sup>4</sup>Shanghai Jiaotong University</span>-->
+                        <!--              <br>-->
+
+
+                        <!-- <span class="author-block">&nbsp;&nbsp;<sup>*</sup>Equal Contribution</span> -->
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2406.00956" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <img src="./img/arxiv.svg">
+
+                    </span>
+                    <span>ArXiv</span>
+                  </a>
+                </span>
+                            <!-- <span class="link-block">
+                              <a href="https://github.com/vlf-silkie/VLFeedback" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                                <span class="icon">
+                                  <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                                </span>
+                                <span>Code</span>
+                              </a>
+                            </span> -->
+                            <span class="link-block">
+                  <a href="https://arxiv.org/abs/2406.00956" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <img src="./img/IEEE_logo.svg">
+                    </span>
+                    <span>IEEE Xplore</span>
+                  </a>
+                </span>
+
+
+                            <span class="link-block">
+                  <a href="https://github.com/qianxihaoyue/AuxOL" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                     <img src="./img/github.svg">
+                        </svg>
+                    </span>
+                    <span>Github Code</span>
+                  </a>
+                </span>
+
+
+                            <!-- <span class="link-block">
+                            <a href="#"
+                               class="external-link button is-normal is-rounded is-dark">
+                              <span class="icon">
+                                <i class="fab fa-youtube"></i>
+                              </span>
+                              <span>Video</span>
+                              </a>
+                          </span> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section" style="background-color:#efeff081">
+    <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-six-fifths">
+                <div style="display:flex;flex-direction: row;justify-content: center;margin-bottom: 30px">
+                    <img src="./img/羽毛笔.svg" width="30px" height="30px" style="margin-right:10px">
+                    <h2 class="title is-3">Abstract</h2></div>
+
+                <div class="content has-text-justified">
+                    <p>
+                        The current variants of the Segment Anything
+                        Model (SAM), which include the original SAM and Medical
+                        SAM, still lack the capability to produce sufficiently accu
+                        rate segmentation for medical images. In medical imag-
+                        ing contexts, it is not uncommon for human experts to
+                        rectify segmentations of specific test samples after SAM
+                        generates its segmentation predictions. These rectifica-
+                        tions typically entail manual or semi-manual corrections
+                        employing state-of-the-art annotation tools. Motivated by
+                        this process, we introduce a novel approach that leverages
+                        the advantages of online machine learning to enhance
+                        Segment Anything (SA) during test time. We employ rectified annotations to perform online
+                        learning, with the aim
+                        of improving the segmentation quality of SA on medical
+                        images. To ensure the effectiveness and efficiency of online
+                        learning when integrated with large-scale vision models
+                        like SAM, we propose a new method called Auxiliary Online
+                        Learning (<span style="color: #a02b93"><b>AuxOL</b></span>), which entails adaptive online-batch
+                        and
+                        adaptive segmentation fusion. Experiments conducted on
+                        eight datasets covering four medical imaging modalities
+                        validate the effectiveness of the proposed method. Our
+                        work proposes and validates a new, practical, and effective
+                        approach for enhancing SA on downstream segmentation
+                        tasks (e.g., medical image segmentation).
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="section">
+
+    <div style="display:flex;flex-direction: row;justify-content: center;margin-bottom: 30px">
+        <img src="./img/特征.svg" width="30px" height="30px" style="margin-right:10px">
+
+
+        <h2 class="title is-3">Motivation</h2></div>
+
+
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <div class="content has-text-justified">
+
+
+                    <centering style="margin-top: 20px;">
+                        <div style="text-align: center;">
+                            <img id="teaser" width="100%" style="margin-top: 30px;" src="./img/fig1.png">
+                        </div>
+                    </centering>
+
+
+                    <div style="display: flex;flex-direction: row;">
+                        <div>
+                            <p>
+                                <img src="./img/对话灵感.svg"
+                                     style="width: 16px;height: 16px;margin-right: 20px"><strong>training a medical
+                                SAM</strong> Training a medical SAM requires acquiring a
+                                large volume of labeled medical images. There exist practical
+                                challenges in building SAM for medical image data, including
+                                variations in modalities (e.g., CT, MRI, Ultrasound), subjects
+                                (e.g., organs, tissues, cells), scales, annotation quality, and
+                                tasks.
+                            </p>
+                            <p>
+                                <img src="./img/对话灵感.svg" style="width: 16px;height: 16px;margin-right: 20px">
+                                <strong>fine-tuning and/or adapting SAM </strong> Fine-tuning and/or adapting a general
+                                purpose SAM to a particular medical image segmentation task,
+                                although a reasonable approach, can lead to the possibility of
+                                SAM losing its generalization capability (to certain degree).
+                                For each distinct medical image segmentation task, one may
+                                need to apply full-session offline fine-tuning and/or adaptation.
+                                Although possible to do, it incurs significant computation and
+                                time costs, and being rigid as each task requires a new session
+                                of offline training.
+                            </p>
+                            <p>
+                                <img src="./img/对话灵感.svg" style="width: 16px;height: 16px;margin-right: 20px"><span
+                                    style="color: #a02b93"><b>AuxOL(Ours)</b></span> Utilizes a much smaller (compared
+                                to SAM)
+                                auxiliary model during inference in conjunction with SAM.
+                                The auxiliary model adjusts SAM’s output while conducting
+                                online weight updates. We call this online learning method
+                                AuxOL (Auxiliary Online Learning).
+                            </p>
+                        </div>
+                        <!--                  <div style="flex:1" >-->
+                        <!--                      <img id="teaser" width="100%" src="./img/code.png" >-->
+                        <!--                  </div>-->
+                    </div>
+
+                    <br/>
+
+                </div>
+            </div>
+        </div>
+</section>
+
+
+<section class="section">
+
+    <div style="display:flex;flex-direction: row;justify-content: center;margin-bottom: 30px">
+        <img src="./img/method.svg" width="30px" height="30px" style="margin-right:10px">
+
+
+        <h2 class="title is-3">Methodology</h2></div>
+
+
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <div class="content has-text-justified">
+
+
+                    <centering>
+                        <div style="text-align: center;">
+                            <img id="teaser" width="90%" src="./img/fig2.png">
+                        </div>
+                    </centering>
+                    <br/>
+                    <p><b>An overview of the main steps of our AuxOL with SAM: Improving Segment Anything (SA) for
+                        medical images via
+                        auxiliary learning in an online learning pipeline.<b/></p>
+
+                </div>
+            </div>
+        </div>
+</section>
+
+
+<section class="section">
+    <div class="columns is-centered has-text-centered">
+        <div style="display:flex;flex-direction: row;justify-content: center;margin-bottom: 30px">
+            <img src="./img/提升.svg" width="30px" height="30px" style="margin-right:10px">
+
+
+            <h2 class="title is-3 " id="evaluation" >Evaluation</h2></div>
+    </div>
+    <div class="container is-max-desktop">
+
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <div class="content has-text-justified">
+
+
+                    <p>
+                        Online learning of AuxOL improves the performances of SAM and Medical SAM in polyp segmentation
+                        of
+                        endoscopic images (five datasets), breast cancer segmentation
+                        of ultrasound images, gland segmentation of histology images, and fluid region segmentation of
+                        OCT scans
+                    </p>
+                    <centering>
+                        <div style="text-align: center;">
+                            <img id="teaser" width="100%" src="./img/table1.png">
+                        </div>
+                    </centering>
+                    <centering>
+                        <div style="text-align: center;">
+                            <img id="teaser" width="100%" src="./img/table2.png">
+                        </div>
+                    </centering>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+
+    <div class="columns is-centered has-text-centered">
+        <div style="display:flex;flex-direction: row;justify-content: center;margin-bottom: 30px">
+            <img src="./img/神经网络.svg" width="30px" height="30px" style="margin-right:10px">
+
+
+            <h2 class="title is-3">Visual Results</h2></div>
+
+    </div>
+
+    <div class="container is-max-desktop">
+        <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+                <div class="item item-video1"
+                     style="display: flex;flex-direction: column;justify-content: center;align-items: center">
+                    <img src="img/fig3.png" width="1000px">
+                    <p style="margin-bottom: 10px"><b> Visual results of polyp segmentation in endoscopic images</b></p>
+                </div>
+                <div class="item item-video2"
+                     style="display: flex;flex-direction: column;justify-content: center;align-items: center">
+                    <img src="img/fig4.png" width="1000px">
+                    <p style="margin-bottom: 10px"><b> Visual results of fluid region segmentation in OCT scans</b></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<section class="section">
+
+    <div class="columns is-centered has-text-centered">
+        <div style="display:flex;flex-direction: row;justify-content: center;margin-bottom: 30px">
+            <img src="./img/防御处置.svg" width="30px" height="30px" style="margin-right:10px">
+
+
+            <h2 class="title is-3">Sensitivity to Imperfect Human Annotations and Prompts</h2></div>
+
+    </div>
+
+    <div class="container is-max-desktop">
+        <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+                <div class="item item-video1">
+                    <img src="img/fig9.png" width="1000px">
+                </div>
+                <div class="item item-video2">
+                    <img src="img/fig10.png" width="1000px">
+                </div>
+                <div class="item item-video2">
+                    <img src="img/fig11.png" width="1000px">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="columns is-centered has-text-centered">
+        <div style="display:flex;flex-direction: row;justify-content: center;margin-bottom: 30px">
+            <img src="./img/高灵敏度.svg" width="30px" height="30px" style="margin-right:10px">
+
+
+            <h2 class="title is-3">Improvement of DSC on each sample</h2></div>
+
+    </div>
+
+    <div class="container is-max-desktop">
+        <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+                <div class="item "
+                     style="display: flex;flex-direction: column;justify-content: center;align-items: center">
+                    <img src="img/absolute_dice.png" width="1000px">
+                    <p style="margin:10px 0"><b>Absolute improvement of DSC on each sample (SAM with AuxOL vs. SAM)</b>
+                    </p>
+                </div>
+                <div class="item "
+                     style="display: flex;flex-direction: column;justify-content: center;align-items: center">
+                    <img src="img/relative_dice.png" width="1000px">
+                    <p style="margin:10px 0"><b>Relative improvement of DSC on each sample (SAM with AuxOL vs. SAM)</b>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="citation">
+    <div class="container is-max-desktop content">
+        <div style="display: flex;flex-direction: row;align-items: center;">
+            <img src="img/引用.svg" width="20px"height="20px" >
+            <span style="font-size: 30px"><b>Citation<b></b></span></div>
+
+        <pre><code>
+          @misc{huang2024improvingsegmentflyauxiliary,
+                title={Improving Segment Anything on the Fly:
+                Auxiliary Online Learning and Adaptive Fusion for Medical Image Segmentation},
+                author={Tianyu Huang and Tao Zhou and Weidi Xie and Shuo Wang and Qi Dou and Yizhe Zhang},
+                year={2024},
+                eprint={2406.00956},
+                archivePrefix={arXiv},
+                primaryClass={cs.CV},
+                url={https://arxiv.org/abs/2406.00956},
+          }
+  </code></pre>
+    </div>
+</section>
+
+
+</body>
+<grammarly-desktop-integration data-grammarly-shadow-root="true">
+    <template shadowrootmode="open">
+        <style>
+            div.grammarly-desktop-integration {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            div.grammarly-desktop-integration:before {
+                content: attr(data-content);
+            }
+        </style>
+
+        <div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration"
+             data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}">
+        </div>
+    </template>
+</grammarly-desktop-integration>
+
+</html>
